@@ -10,19 +10,22 @@ public class MainMenuScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
-    public void onStartButtonPressed () {
-        HideMainMenuPanel ();
+    public void onStartButtonPressed()
+    {
+        HideMainMenuPanel();
     }
 
-    public void ShowMainMenuPanel () {
-        mainMenuPanel.SetActive (true);
+    public void ShowMainMenuPanel()
+    {
+        mainMenuPanel.SetActive(true);
     }
 
-    public void HideMainMenuPanel () {
-        mainMenuPanel.SetActive (false);
+    public void HideMainMenuPanel()
+    {
+        mainMenuPanel.SetActive(false);
     }
 
 }
