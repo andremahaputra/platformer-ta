@@ -4,6 +4,5 @@ using UnityEngine;
 public class SceneConfig : ScriptableObject {
     public SceneReference mainMenuScene;
     public SceneReference worldMapScene;
-
     public SceneReference uiInGameScene;
 }

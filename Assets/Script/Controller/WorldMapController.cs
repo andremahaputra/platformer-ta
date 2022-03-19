@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using VContainer.Unity;
@@ -28,9 +29,11 @@ public class WorldMapController : IStartable
         });
     }
 
-    public void SelectStage(StageData data)
-    {
-        navigator.LoadSceneByName (data.scene.ScenePath, LoadSceneMode.Single);
-        Debug.Log("Load scene: " + data.scene.ScenePath);
+    public async void SelectStage(StageData data)
+    {   
+        await navigator.LoadInGameUI ().ContinueWith (async () => {
+            await navigator.LoadSceneByName (data.scene.ScenePath, LoadSceneMode.Single);
+        });
+        await navigator.UnloadWorldMap ();
     }
 }

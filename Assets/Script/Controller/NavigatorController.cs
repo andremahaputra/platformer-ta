@@ -1,19 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using VContainer.Unity;
 
 public interface INavigator
 {
-    public void LoadMainMenu();
-    public void UnloadMainMenu();
+    public UniTask LoadMainMenu();
+    public UniTask UnloadMainMenu();
 
-    public void LoadWorldMap();
-    public void UnloadWorldMap();
+    public UniTask LoadWorldMap();
+    public UniTask UnloadWorldMap();
 
-    public void LoadSceneByName(string sceneName, LoadSceneMode mode);
-    public void UnloadSceneByName(string sceneName);
+    public UniTask LoadInGameUI ();
+    public UniTask UnloadInGameUI ();
+
+
+    public UniTask LoadSceneByName(string sceneName, LoadSceneMode mode);
+    public UniTask UnloadSceneByName(string sceneName);
 }
 
 public class NavigatorController : INavigator
@@ -27,33 +32,43 @@ public class NavigatorController : INavigator
         this.sceneConfig = sceneConfig;
     }
 
-    void INavigator.LoadMainMenu()
+    UniTask INavigator.LoadInGameUI()
+    {
+        return SceneManager.LoadSceneAsync (sceneConfig.uiInGameScene.ScenePath, LoadSceneMode.Additive).ToUniTask();
+    }
+
+    UniTask INavigator.LoadMainMenu()
     {   
-        SceneManager.LoadSceneAsync(sceneConfig.mainMenuScene.ScenePath, LoadSceneMode.Additive);
+        return SceneManager.LoadSceneAsync(sceneConfig.mainMenuScene.ScenePath, LoadSceneMode.Additive).ToUniTask();
     }
 
-    void INavigator.LoadSceneByName(string sceneName, LoadSceneMode mode)
+    UniTask INavigator.LoadSceneByName(string sceneName, LoadSceneMode mode)
     {
-        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive).ToUniTask();
     }
 
-    void INavigator.LoadWorldMap()
+    UniTask INavigator.LoadWorldMap()
     {
-        SceneManager.LoadSceneAsync (sceneConfig.worldMapScene.ScenePath, LoadSceneMode.Additive);
+        return SceneManager.LoadSceneAsync (sceneConfig.worldMapScene.ScenePath, LoadSceneMode.Additive).ToUniTask();
     }
 
-    void INavigator.UnloadMainMenu()
+    UniTask INavigator.UnloadInGameUI()
     {
-        SceneManager.UnloadSceneAsync(sceneConfig.mainMenuScene.ScenePath);
+        return SceneManager.UnloadSceneAsync (sceneConfig.uiInGameScene.ScenePath).ToUniTask();
     }
 
-    void INavigator.UnloadSceneByName(string sceneName)
+    UniTask INavigator.UnloadMainMenu()
     {
-        SceneManager.UnloadSceneAsync(sceneName, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+        return SceneManager.UnloadSceneAsync(sceneConfig.mainMenuScene.ScenePath).ToUniTask ();
     }
 
-    void INavigator.UnloadWorldMap()
+    UniTask INavigator.UnloadSceneByName(string sceneName)
     {
-        SceneManager.UnloadSceneAsync(sceneConfig.worldMapScene.ScenePath);
+        return SceneManager.UnloadSceneAsync(sceneName, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects).ToUniTask();
+    }
+
+    UniTask INavigator.UnloadWorldMap()
+    {
+        return SceneManager.UnloadSceneAsync(sceneConfig.worldMapScene.ScenePath).ToUniTask();
     }
 }

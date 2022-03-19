@@ -36,8 +36,9 @@ public class MainMenuController : IStartable
     {
     }
 
-    public void OnContinueGameClick()
+    public async void OnContinueGameClick()
     {
         navigator.LoadWorldMap();
+        navigator.UnloadMainMenu();
     }
 }
