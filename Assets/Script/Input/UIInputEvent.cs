@@ -7,18 +7,15 @@ public class UIInputEvent : MonoBehaviour, IInputEvent
     public event IInputEvent.MoveDelegate OnMove;
     public event IInputEvent.JumpDelegate OnJump;
     public event IInputEvent.CrouchDelegate OnCrouch;
-
+    public event IInputEvent.AttackDelegate OnAttack;
 
     public void OnMoveRightPressed()
     {
-
-        print("pressed.");
         OnMove?.Invoke(new InputContext(InputStatus.PRESSED), Vector2.right);
     }
 
     public void OnMoveRightReleased()
     {
-        print("released.");
         OnMove?.Invoke(new InputContext(InputStatus.RELEASED), Vector2.right);
     }
 
@@ -50,5 +47,17 @@ public class UIInputEvent : MonoBehaviour, IInputEvent
     public void OnCrouchReleased()
     {
         OnCrouch?.Invoke(new InputContext(InputStatus.RELEASED));
+    }
+
+    public void OnAttackPressed()
+    {
+        print("Attack!");
+        OnAttack?.Invoke(new InputContext(InputStatus.PRESSED));
+    }
+
+    public void OnAttackReleased()
+    {
+        print("Stop attack!");
+        OnAttack?.Invoke(new InputContext(InputStatus.RELEASED));
     }
 }

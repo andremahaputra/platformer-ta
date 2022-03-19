@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6da389b10427b4cab44a169a6072c6, type: 3}
+  m_Name: Scene Config
+  m_EditorClassIdentifier: 
+  mainMenuScene:
+    sceneAsset: {fileID: 102900000, guid: 260f12fb0a7304f4e8ab7bf72855c1b2, type: 3}
+    scenePath: Assets/Scenes/main-menu.unity
+  worldMapScene:
+    sceneAsset: {fileID: 102900000, guid: 823babe4fe6a480458c8628827b46c27, type: 3}
+    scenePath: Assets/Scenes/world-map.unity
+  uiInGameScene:
+    sceneAsset: {fileID: 0}
+    scenePath: 

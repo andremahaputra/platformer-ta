@@ -5,18 +5,20 @@ using UnityEngine.Video;
 
 public class PlayerController : MonoBehaviour
 {
-
-
     private Vector3 currentMovement;
+    private bool isJumping = false;
     private bool isMovePressed = false;
     private bool isJumpPressed = false;
-    private bool isJumping = false;
+    private bool isAttackPressed = false;
+
+
     private float initialJumpVelocity;
     private float gravity = -9.8f;
     private float groundedGravity = -0.05f;
 
 
     [Header("Configuration")]
+    [SerializeField] private CharacterStatus status;
     [SerializeField] private float moveSpeed = 10;
     [SerializeField] private float maxJumpHeight = 1f;
     [SerializeField] private float maxJumpTime = 0.5f;
@@ -26,16 +28,8 @@ public class PlayerController : MonoBehaviour
     public CharacterController controller;
     public Animator anim;
 
-
     // Injected Component
     public IInputEvent inputEvent;
-
-    void OnDisable()
-    {
-        inputEvent.OnMove -= OnMoveListener;
-        inputEvent.OnJump -= OnJumpListener;
-        inputEvent.OnCrouch -= OnCrouchListener;
-    }
 
     void Start()
     {
@@ -45,13 +39,24 @@ public class PlayerController : MonoBehaviour
         // Should Inject this
         inputEvent = GameObject.FindObjectOfType<UIInputEvent>();
 
-        inputEvent.OnMove += OnMoveListener;
-        inputEvent.OnJump += OnJumpListener;
-        inputEvent.OnCrouch += OnCrouchListener;
+        if (inputEvent != null)
+        {
+            inputEvent.OnMove += OnMoveListener;
+            inputEvent.OnJump += OnJumpListener;
+            inputEvent.OnCrouch += OnCrouchListener;
+            inputEvent.OnAttack += OnAttackListener;
+        }
 
         SetupJumpVariables();
     }
 
+    void OnDisable()
+    {
+        inputEvent.OnMove -= OnMoveListener;
+        inputEvent.OnJump -= OnJumpListener;
+        inputEvent.OnCrouch -= OnCrouchListener;
+        inputEvent.OnAttack -= OnAttackListener;
+    }
 
     void Update()
     {
@@ -69,7 +74,6 @@ public class PlayerController : MonoBehaviour
 
     void HandleGravity()
     {
-        print(controller.isGrounded);
         if (controller.isGrounded) currentMovement.y = groundedGravity;
         else currentMovement.y += gravity * Time.deltaTime;
     }
@@ -88,7 +92,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!isJumping && controller.isGrounded && isJumpPressed)
         {
-            Debug.Log("Jump!");
             isJumping = true;
             currentMovement.y = initialJumpVelocity;
         }
@@ -96,6 +99,8 @@ public class PlayerController : MonoBehaviour
         {
             isJumping = false;
         }
+
+        anim.SetBool("IsJumping", isJumping);
     }
 
     void OnMoveListener(InputContext ctx, Vector2 v)
@@ -136,6 +141,20 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("IsCrouching", false);
         }
+    }
+
+    void OnAttackListener(InputContext ctx)
+    {
+        if (ctx.status == InputStatus.PRESSED)
+        {
+            isAttackPressed = true;
+        }
+        else
+        {
+            isAttackPressed = false;
+        }
+
+        anim.SetBool("IsAttacking", isAttackPressed);
     }
 }
 

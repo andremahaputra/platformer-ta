@@ -8,8 +8,17 @@ public class KeyboardInputSource : MonoBehaviour, IInputEvent
     public event IInputEvent.MoveDelegate OnMove;
     public event IInputEvent.JumpDelegate OnJump;
     public event IInputEvent.CrouchDelegate OnCrouch;
+    public event IInputEvent.AttackDelegate OnAttack;
 
     void Update()
+    {
+        HandleMoveInput();
+        HandleJumpInput();
+        HandleCrouchInput();
+        HandleAttackInput();
+    }
+
+    private void HandleMoveInput()
     {
         var movementInput = Input.GetAxis("Horizontal");
         if (movementInput != 0)
@@ -22,6 +31,10 @@ public class KeyboardInputSource : MonoBehaviour, IInputEvent
         }
 
 
+    }
+
+    private void HandleJumpInput()
+    {
         var jumpPressed = Input.GetKeyDown(KeyCode.Space);
         if (jumpPressed)
         {
@@ -32,6 +45,10 @@ public class KeyboardInputSource : MonoBehaviour, IInputEvent
             OnJump?.Invoke(new InputContext(InputStatus.RELEASED));
         }
 
+    }
+
+    private void HandleCrouchInput()
+    {
         var crouchPressed = Input.GetKeyDown(KeyCode.S);
         if (crouchPressed)
         {
@@ -43,6 +60,18 @@ public class KeyboardInputSource : MonoBehaviour, IInputEvent
         {
             OnCrouch?.Invoke(new InputContext(InputStatus.RELEASED));
         }
+
+
     }
 
+
+    private void HandleAttackInput() {
+        if (Input.GetMouseButton (0)){
+            OnAttack?.Invoke(new InputContext(InputStatus.PRESSED));
+        }
+
+        if (Input.GetMouseButtonUp(0)) {
+            OnAttack?.Invoke(new InputContext(InputStatus.RELEASED));
+        }
+    }
 }
