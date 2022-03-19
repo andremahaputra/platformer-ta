@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using VContainer.Unity;
 
-public interface INavigator
+public interface ISceneController
 {
     public UniTask LoadMainMenu();
     public UniTask UnloadMainMenu();
@@ -21,53 +21,53 @@ public interface INavigator
     public UniTask UnloadSceneByName(string sceneName);
 }
 
-public class NavigatorController : INavigator
+public class SceneController : ISceneController
 {
     
     private LifetimeScope scope;
     private SceneConfig sceneConfig;
 
-    public NavigatorController(LifetimeScope scope, SceneConfig sceneConfig) { 
+    public SceneController(LifetimeScope scope, SceneConfig sceneConfig) { 
         this.scope = scope;
         this.sceneConfig = sceneConfig;
     }
 
-    UniTask INavigator.LoadInGameUI()
+    UniTask ISceneController.LoadInGameUI()
     {
         return SceneManager.LoadSceneAsync (sceneConfig.uiInGameScene.ScenePath, LoadSceneMode.Additive).ToUniTask();
     }
 
-    UniTask INavigator.LoadMainMenu()
+    UniTask ISceneController.LoadMainMenu()
     {   
         return SceneManager.LoadSceneAsync(sceneConfig.mainMenuScene.ScenePath, LoadSceneMode.Additive).ToUniTask();
     }
 
-    UniTask INavigator.LoadSceneByName(string sceneName, LoadSceneMode mode)
+    UniTask ISceneController.LoadSceneByName(string sceneName, LoadSceneMode mode)
     {
         return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive).ToUniTask();
     }
 
-    UniTask INavigator.LoadWorldMap()
+    UniTask ISceneController.LoadWorldMap()
     {
         return SceneManager.LoadSceneAsync (sceneConfig.worldMapScene.ScenePath, LoadSceneMode.Additive).ToUniTask();
     }
 
-    UniTask INavigator.UnloadInGameUI()
+    UniTask ISceneController.UnloadInGameUI()
     {
         return SceneManager.UnloadSceneAsync (sceneConfig.uiInGameScene.ScenePath).ToUniTask();
     }
 
-    UniTask INavigator.UnloadMainMenu()
+    UniTask ISceneController.UnloadMainMenu()
     {
         return SceneManager.UnloadSceneAsync(sceneConfig.mainMenuScene.ScenePath).ToUniTask ();
     }
 
-    UniTask INavigator.UnloadSceneByName(string sceneName)
+    UniTask ISceneController.UnloadSceneByName(string sceneName)
     {
         return SceneManager.UnloadSceneAsync(sceneName, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects).ToUniTask();
     }
 
-    UniTask INavigator.UnloadWorldMap()
+    UniTask ISceneController.UnloadWorldMap()
     {
         return SceneManager.UnloadSceneAsync(sceneConfig.worldMapScene.ScenePath).ToUniTask();
     }

@@ -12,7 +12,7 @@ public class RootScope : LifetimeScope
     protected override void Configure(IContainerBuilder builder)
     {
         builder.RegisterEntryPoint<Initialization> (Lifetime.Transient);
-        builder.Register<NavigatorController> (Lifetime.Singleton).AsImplementedInterfaces();
+        builder.Register<SceneController> (Lifetime.Singleton).AsImplementedInterfaces();
         builder.RegisterComponent<SceneConfig>(sceneConfig);
     }
 }

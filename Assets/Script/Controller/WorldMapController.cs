@@ -5,9 +5,9 @@ using VContainer.Unity;
 
 public class WorldMapController : IStartable
 {
-    private INavigator navigator;
+    private ISceneController navigator;
     private WorldMapScreen screen;
-    public WorldMapController(INavigator navigator,  WorldMapScreen screen)
+    public WorldMapController(ISceneController navigator,  WorldMapScreen screen)
     {
         this.navigator = navigator;
         this.screen = screen;

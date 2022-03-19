@@ -5,8 +5,8 @@ using VContainer.Unity;
 
 public class Initialization : IStartable
 {
-    private INavigator navigator;
-    public Initialization(INavigator navigator)
+    private ISceneController navigator;
+    public Initialization(ISceneController navigator)
     {
         this.navigator = navigator;
     }

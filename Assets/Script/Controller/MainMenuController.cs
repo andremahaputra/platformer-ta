@@ -5,10 +5,10 @@ using VContainer.Unity;
 
 public class MainMenuController : IStartable
 {
-    private INavigator navigator;
+    private ISceneController navigator;
     private MainMenuScreen screen;
 
-    public MainMenuController(INavigator navigator, MainMenuScreen screen)
+    public MainMenuController(ISceneController navigator, MainMenuScreen screen)
     {
         this.navigator = navigator;
         this.screen = screen;
