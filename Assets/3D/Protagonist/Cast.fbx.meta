@@ -38,8 +38,8 @@ ModelImporter:
       name: cast
       takeName: mixamo.com
       internalID: 0
-      firstFrame: 45
-      lastFrame: 101
+      firstFrame: 54
+      lastFrame: 70
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

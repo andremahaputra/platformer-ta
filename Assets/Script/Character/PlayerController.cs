@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     private bool isJumpPressed = false;
     private bool isAttackPressed = false;
 
-
     private float initialJumpVelocity;
     private float gravity = -9.8f;
     private float groundedGravity = -0.05f;
@@ -22,11 +21,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 10;
     [SerializeField] private float maxJumpHeight = 1f;
     [SerializeField] private float maxJumpTime = 0.5f;
+    
 
-
-    [Header("Required Component")]
+    [Header("Component")]
     public CharacterController controller;
     public Animator anim;
+
+    /// Property
+    public Vector2 Forward { get; private set; }
+    
     [SerializeField, SerializeReference] private InputContainer inputChannel;
 
 
@@ -35,14 +38,11 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
 
-        // Should Inject this
-
         if (inputChannel != null)
         {
             inputChannel.OnMove += OnMoveListener;
             inputChannel.OnJump += OnJumpListener;
             inputChannel.OnCrouch += OnCrouchListener;
-            inputChannel.OnAttack += OnAttackListener;
         }
 
         SetupJumpVariables();
@@ -53,7 +53,6 @@ public class PlayerController : MonoBehaviour
         inputChannel.OnMove -= OnMoveListener;
         inputChannel.OnJump -= OnJumpListener;
         inputChannel.OnCrouch -= OnCrouchListener;
-        inputChannel.OnAttack -= OnAttackListener;
     }
 
     void Update()
@@ -81,7 +80,7 @@ public class PlayerController : MonoBehaviour
         controller.Move(currentMovement * Time.deltaTime);
         if (isMovePressed)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(currentMovement.x, 0, 0), Vector3.up), 8 * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(currentMovement.x, 0, 0), Vector3.up), 25 * Time.deltaTime);
         }
 
     }
@@ -105,6 +104,7 @@ public class PlayerController : MonoBehaviour
     {
         if (ctx.status == InputStatus.PRESSED)
         {
+            Forward = v;
             currentMovement.x = v.x * moveSpeed;
             anim.SetBool("IsMoving", true);
             isMovePressed = true;
@@ -139,20 +139,6 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("IsCrouching", false);
         }
-    }
-
-    void OnAttackListener(InputContext ctx)
-    {
-        if (ctx.status == InputStatus.PRESSED)
-        {
-            isAttackPressed = true;
-        }
-        else
-        {
-            isAttackPressed = false;
-        }
-
-        anim.SetBool("IsAttacking", isAttackPressed);
     }
 }
 
