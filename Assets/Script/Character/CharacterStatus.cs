@@ -1,7 +1,8 @@
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Character Stat", menuName = "ScriptableObject/Character Stat")]
 public class CharacterStatus : ScriptableObject {
     public int health;
-    public int atk;
-    public int def;
+    public int attack;
+    public int defense;
 }

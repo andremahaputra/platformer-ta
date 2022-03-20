@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
 
 
     [Header("Configuration")]
-    [SerializeField] private CharacterStatus status;
     [SerializeField] private float moveSpeed = 10;
     [SerializeField] private float maxJumpHeight = 1f;
     [SerializeField] private float maxJumpTime = 0.5f;
@@ -35,9 +34,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        controller = GetComponent<CharacterController>();
-        anim = GetComponentInChildren<Animator>();
-
         if (inputChannel != null)
         {
             inputChannel.OnMove += OnMoveListener;

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6182816014942566708}
   - component: {fileID: 6182816014942566709}
   m_Layer: 0
-  m_Name: KeyboardMouseInput
+  m_Name: keyboard-mouse-input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

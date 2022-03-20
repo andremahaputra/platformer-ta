@@ -76,7 +76,7 @@ public class AttackHandler : MonoBehaviour
         if (isAttacking && isAnimComplete && fireTimer > fireRate)
         {
             var o = GameObject.Instantiate(projectile, projectileInitialPos.position, Quaternion.identity);
-            o.SetDirection(controller.Forward);
+            o.Setup(controller.Forward);
             fireTimer = 0;
         }
     }

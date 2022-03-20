@@ -5,7 +5,7 @@ using UnityEngine;
 public class UIInputEvent : MonoBehaviour
 {
     [SerializeField, SerializeReference] InputContainer channel;
-
+  
     public void OnMoveRightPressed()
     {
         channel.Move(new InputContext(InputStatus.PRESSED), Vector2.right);
