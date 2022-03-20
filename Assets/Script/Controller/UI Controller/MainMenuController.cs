@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer.Unity;
 
@@ -38,7 +39,9 @@ public class MainMenuController : IStartable
 
     public async void OnContinueGameClick()
     {
-        navigator.LoadWorldMap();
-        navigator.UnloadMainMenu();
+        await navigator.LoadWorldMap().ContinueWith(() =>
+        {
+            navigator.UnloadMainMenu();
+        });
     }
 }

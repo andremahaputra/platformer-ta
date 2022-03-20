@@ -27,9 +27,8 @@ public class PlayerController : MonoBehaviour
     [Header("Required Component")]
     public CharacterController controller;
     public Animator anim;
+    [SerializeField, SerializeReference] private InputContainer inputChannel;
 
-    // Injected Component
-    public IInputEvent inputEvent;
 
     void Start()
     {
@@ -37,14 +36,13 @@ public class PlayerController : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
 
         // Should Inject this
-        inputEvent = GameObject.FindObjectOfType<UIInputEvent>();
 
-        if (inputEvent != null)
+        if (inputChannel != null)
         {
-            inputEvent.OnMove += OnMoveListener;
-            inputEvent.OnJump += OnJumpListener;
-            inputEvent.OnCrouch += OnCrouchListener;
-            inputEvent.OnAttack += OnAttackListener;
+            inputChannel.OnMove += OnMoveListener;
+            inputChannel.OnJump += OnJumpListener;
+            inputChannel.OnCrouch += OnCrouchListener;
+            inputChannel.OnAttack += OnAttackListener;
         }
 
         SetupJumpVariables();
@@ -52,10 +50,10 @@ public class PlayerController : MonoBehaviour
 
     void OnDisable()
     {
-        inputEvent.OnMove -= OnMoveListener;
-        inputEvent.OnJump -= OnJumpListener;
-        inputEvent.OnCrouch -= OnCrouchListener;
-        inputEvent.OnAttack -= OnAttackListener;
+        inputChannel.OnMove -= OnMoveListener;
+        inputChannel.OnJump -= OnJumpListener;
+        inputChannel.OnCrouch -= OnCrouchListener;
+        inputChannel.OnAttack -= OnAttackListener;
     }
 
     void Update()

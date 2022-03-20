@@ -19,5 +19,5 @@ MonoBehaviour:
     sceneAsset: {fileID: 102900000, guid: 823babe4fe6a480458c8628827b46c27, type: 3}
     scenePath: Assets/Scenes/world-map.unity
   uiInGameScene:
-    sceneAsset: {fileID: 0}
-    scenePath: 
+    sceneAsset: {fileID: 102900000, guid: 397669fc4f318414eaec11c61257eb5b, type: 3}
+    scenePath: Assets/Scenes/ui-ingame.unity

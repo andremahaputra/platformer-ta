@@ -3,12 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyboardInputSource : MonoBehaviour, IInputEvent
+public class KeyboardInputEvent : MonoBehaviour
 {
-    public event IInputEvent.MoveDelegate OnMove;
-    public event IInputEvent.JumpDelegate OnJump;
-    public event IInputEvent.CrouchDelegate OnCrouch;
-    public event IInputEvent.AttackDelegate OnAttack;
+    [SerializeField, SerializeReference] InputContainer channel;
 
     void Update()
     {
@@ -23,11 +20,11 @@ public class KeyboardInputSource : MonoBehaviour, IInputEvent
         var movementInput = Input.GetAxis("Horizontal");
         if (movementInput != 0)
         {
-            OnMove?.Invoke(new InputContext(InputStatus.PRESSED), new Vector2(movementInput, 0));
+            channel.Move(new InputContext(InputStatus.PRESSED), new Vector2(movementInput, 0));
         }
         else
         {
-            OnMove?.Invoke(new InputContext(InputStatus.RELEASED), Vector2.zero);
+            channel.Move(new InputContext(InputStatus.RELEASED), Vector2.zero);
         }
 
 
@@ -38,11 +35,11 @@ public class KeyboardInputSource : MonoBehaviour, IInputEvent
         var jumpPressed = Input.GetKeyDown(KeyCode.Space);
         if (jumpPressed)
         {
-            OnJump?.Invoke(new InputContext(InputStatus.PRESSED));
+            channel.Jump(new InputContext(InputStatus.PRESSED));
         }
         else
         {
-            OnJump?.Invoke(new InputContext(InputStatus.RELEASED));
+            channel.Jump(new InputContext(InputStatus.RELEASED));
         }
 
     }
@@ -52,26 +49,25 @@ public class KeyboardInputSource : MonoBehaviour, IInputEvent
         var crouchPressed = Input.GetKeyDown(KeyCode.S);
         if (crouchPressed)
         {
-            OnCrouch?.Invoke(new InputContext(InputStatus.PRESSED));
+            channel.Crouch(new InputContext(InputStatus.PRESSED));
         }
 
         var crouchReleased = Input.GetKeyUp(KeyCode.S);
         if (crouchReleased)
         {
-            OnCrouch?.Invoke(new InputContext(InputStatus.RELEASED));
+            channel.Crouch(new InputContext(InputStatus.RELEASED));
         }
 
 
     }
 
-
     private void HandleAttackInput() {
         if (Input.GetMouseButton (0)){
-            OnAttack?.Invoke(new InputContext(InputStatus.PRESSED));
+            channel.Attack(new InputContext(InputStatus.PRESSED));
         }
 
         if (Input.GetMouseButtonUp(0)) {
-            OnAttack?.Invoke(new InputContext(InputStatus.RELEASED));
+            channel.Attack(new InputContext(InputStatus.RELEASED));
         }
     }
 }

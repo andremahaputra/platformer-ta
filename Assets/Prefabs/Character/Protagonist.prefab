@@ -45,11 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3e45d56535da54fb0bc2fe7e9b9093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  status: {fileID: 0}
   moveSpeed: 50
   maxJumpHeight: 10
   maxJumpTime: 0.5
-  controller: {fileID: 0}
-  anim: {fileID: 0}
+  controller: {fileID: 1312827845514845174}
+  anim: {fileID: 1312827845811383241}
+  inputChannel: {fileID: 11400000, guid: cd1f2bbe8fcfcba429b5a07e1c2e6f05, type: 2}
 --- !u!143 &1312827845514845174
 CharacterController:
   m_ObjectHideFlags: 0
@@ -61,13 +63,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 15.83
+  m_Height: 14.85
   m_Radius: 2.59
   m_SlopeLimit: 45
   m_StepOffset: 0
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
-  m_Center: {x: 0, y: 7.6, z: 0}
+  m_Center: {x: 0, y: 7.4, z: 0}
 --- !u!95 &1312827845811383241
 Animator:
   serializedVersion: 3
