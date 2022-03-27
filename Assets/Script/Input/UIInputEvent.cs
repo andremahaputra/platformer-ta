@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UIInputEvent : MonoBehaviour
 {
-    [SerializeField, SerializeReference] InputContainer channel;
+    [SerializeField, SerializeReference] InputChannel channel;
   
     public void OnMoveRightPressed()
     {

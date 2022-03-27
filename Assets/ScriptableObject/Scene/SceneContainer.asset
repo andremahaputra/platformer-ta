@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad6da389b10427b4cab44a169a6072c6, type: 3}
-  m_Name: Scene Config
+  m_Script: {fileID: 11500000, guid: cd4dc82236940954bae569277367e3ba, type: 3}
+  m_Name: SceneContainer
   m_EditorClassIdentifier: 
-  mainMenuScene:
+  mainMenu:
     sceneAsset: {fileID: 102900000, guid: 260f12fb0a7304f4e8ab7bf72855c1b2, type: 3}
     scenePath: Assets/Scenes/main-menu.unity
-  worldMapScene:
+  worldMap:
     sceneAsset: {fileID: 102900000, guid: 823babe4fe6a480458c8628827b46c27, type: 3}
     scenePath: Assets/Scenes/world-map.unity
-  uiInGameScene:
+  ui_inGame:
     sceneAsset: {fileID: 102900000, guid: 397669fc4f318414eaec11c61257eb5b, type: 3}
     scenePath: Assets/Scenes/ui-ingame.unity

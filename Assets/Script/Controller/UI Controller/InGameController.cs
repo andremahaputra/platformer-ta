@@ -1,7 +1,7 @@
 using UnityEngine;
 using VContainer.Unity;
 
-public class InGameController : IStartable, ITickable
+public class InGameController : IStartable
 {
     private InGameScreen screen;
 
@@ -9,20 +9,11 @@ public class InGameController : IStartable, ITickable
     {
         this.screen = screen;
     }
-
+    
     void IStartable.Start()
     {
         screen.menuBtn.onClick.AddListener(() => {
             Debug.Log("Open menu");
         });
-    }
-
-    void ITickable.Tick()
-    {
-        UpdateHealthText ();
-    }
-
-    private void UpdateHealthText () {
-        screen.healthTxt.text = screen.status.health.ToString();
     }
 }

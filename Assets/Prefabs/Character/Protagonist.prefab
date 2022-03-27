@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128624209}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.548079, y: 8.932859, z: -1.0765378}
+  m_LocalPosition: {x: 2.548079, y: 8.932859, z: 2.4234622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1312827845514845172}
@@ -40,8 +40,8 @@ PositionConstraint:
   m_GameObject: {fileID: 128624209}
   m_Enabled: 1
   m_Weight: 1
-  m_TranslationAtRest: {x: 2.548079, y: 8.932859, z: -1.0765378}
-  m_TranslationOffset: {x: 0, y: 0.5, z: 0}
+  m_TranslationAtRest: {x: 2.548079, y: 8.932859, z: 2.4234622}
+  m_TranslationOffset: {x: 0, y: 0.5, z: 3.5}
   m_AffectTranslationX: 1
   m_AffectTranslationY: 1
   m_AffectTranslationZ: 1
@@ -60,8 +60,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1312827845514845172}
   - component: {fileID: 1312827845514845174}
-  - component: {fileID: 1312827845514845173}
+  - component: {fileID: 1229245353004329841}
   - component: {fileID: 1007486541}
+  - component: {fileID: 6673550858102603600}
   m_Layer: 7
   m_Name: protagonist
   m_TagString: Untagged
@@ -103,7 +104,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 7.4, z: 0}
---- !u!114 &1312827845514845173
+--- !u!114 &1229245353004329841
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,15 +113,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1312827845514845179}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd3e45d56535da54fb0bc2fe7e9b9093, type: 3}
+  m_Script: {fileID: 11500000, guid: 89fcd3387229f3f41b99444fe33a677f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 50
-  maxJumpHeight: 10
-  maxJumpTime: 0.5
+  moveSpeed: 40
+  maxJumpHeight: 15
+  maxJumpTime: 0.7
   controller: {fileID: 1312827845514845174}
   anim: {fileID: 1312827845811383241}
-  inputChannel: {fileID: 11400000, guid: cd1f2bbe8fcfcba429b5a07e1c2e6f05, type: 2}
+  inputChannel: {fileID: 11400000, guid: b8df1fc6940b82349a3a7ee78d97fd64, type: 2}
 --- !u!114 &1007486541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,10 +137,23 @@ MonoBehaviour:
   projectile: {fileID: -6566457891987434380, guid: 69b66c64decc5e147ad486834e24a318, type: 3}
   projectileInitialPos: {fileID: 128624210}
   anim: {fileID: 1312827845811383241}
-  controller: {fileID: 1312827845514845173}
+  controller: {fileID: 1229245353004329841}
   animationEventHandler: {fileID: 1334635936}
-  inputEvent: {fileID: 11400000, guid: cd1f2bbe8fcfcba429b5a07e1c2e6f05, type: 2}
+  inputEvent: {fileID: 11400000, guid: b8df1fc6940b82349a3a7ee78d97fd64, type: 2}
   fireRate: 0.2
+--- !u!114 &6673550858102603600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312827845514845179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b90ddddefdc5a468745eb576eaa801, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: 84ab391a689c6ca44990f3ed10849e40, type: 2}
 --- !u!95 &1312827845811383241
 Animator:
   serializedVersion: 3

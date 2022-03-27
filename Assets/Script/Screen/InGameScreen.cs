@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class InGameScreen : MonoBehaviour {
-    public CharacterStatus status;
     public TextMeshProUGUI healthTxt;
     public Button menuBtn;
     public EventTrigger jumpBtn;

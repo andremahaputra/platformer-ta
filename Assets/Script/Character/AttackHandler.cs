@@ -15,9 +15,9 @@ public class AttackHandler : MonoBehaviour
 
     [Header("Dependency")]
     public Animator anim;
-    public PlayerController controller;
+    public MovementHandler controller;
     public AnimationEventHandler animationEventHandler;
-    public InputContainer inputEvent;
+    public InputChannel inputEvent;
 
     [Header("Configuration")]
     [SerializeField]

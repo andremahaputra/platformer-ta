@@ -5,14 +5,17 @@ using VContainer.Unity;
 
 public class Initialization : IStartable
 {
-    private ISceneController navigator;
-    public Initialization(ISceneController navigator)
+    private Navigator navigator;
+    private SceneContainer scenes;
+
+    public Initialization(Navigator navigator, SceneContainer scenes)
     {
         this.navigator = navigator;
+        this.scenes = scenes;
     }
 
     public void Start()
     {
-        navigator.LoadMainMenu ();
+        navigator.Push(scenes.mainMenu);
     }
 }

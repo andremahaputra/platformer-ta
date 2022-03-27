@@ -18,7 +18,7 @@ public class InputContext
     }
 }
 
-public interface IInputEvent
+public interface IInputChannel
 {
     public delegate void MoveDelegate(InputContext ctx, Vector2 vector);
     public delegate void JumpDelegate(InputContext ctx);

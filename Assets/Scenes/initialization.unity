@@ -210,7 +210,7 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
-  sceneConfig: {fileID: 11400000, guid: 60c51ec44fdb18b498850964620be361, type: 2}
+  sceneConfig: {fileID: 11400000, guid: 69fccd75cab60fe4d86149b7ddb416cf, type: 2}
 --- !u!1001 &3707596310552367977
 PrefabInstance:
   m_ObjectHideFlags: 0

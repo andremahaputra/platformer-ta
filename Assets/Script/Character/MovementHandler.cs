@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
-public class PlayerController : MonoBehaviour
+public class MovementHandler : MonoBehaviour
 {
     private Vector3 currentMovement;
     private bool isJumping = false;
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     /// Property
     public Vector2 Forward { get; private set; }
     
-    [SerializeField, SerializeReference] private InputContainer inputChannel;
+    [SerializeField, SerializeReference] private InputChannel inputChannel;
 
 
     void Start()

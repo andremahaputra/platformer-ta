@@ -6,42 +6,42 @@ using VContainer.Unity;
 
 public class MainMenuController : IStartable
 {
-    private ISceneController navigator;
+    private Navigator navigator;
     private MainMenuScreen screen;
+    private SceneContainer scenes;
 
-    public MainMenuController(ISceneController navigator, MainMenuScreen screen)
+    public MainMenuController(Navigator navigator, MainMenuScreen screen, SceneContainer scenes)
     {
         this.navigator = navigator;
         this.screen = screen;
+        this.scenes = scenes;
     }
 
     public void Start()
     {
-        this.Register(screen);
-    }
-
-    private void Register(MainMenuScreen screen)
-    {
         screen.startGameBtn.onClick.AddListener(() =>
-        {
-            OnStartGameClick();
-        });
+       {
+           OnStartGameClick();
+       });
 
         screen.continueGameBtn.onClick.AddListener(() =>
         {
             OnContinueGameClick();
         });
     }
-
-    public void OnStartGameClick()
+    public async void OnStartGameClick()
     {
+        await navigator.Push(scenes.worldMap).ContinueWith(() =>
+        {
+            navigator.Pop(scenes.mainMenu);
+        });
     }
 
     public async void OnContinueGameClick()
     {
-        await navigator.LoadWorldMap().ContinueWith(() =>
+        await navigator.Push(scenes.worldMap).ContinueWith(() =>
         {
-            navigator.UnloadMainMenu();
+            navigator.Pop(scenes.mainMenu);
         });
     }
 }

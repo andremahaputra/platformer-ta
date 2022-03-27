@@ -5,20 +5,18 @@ using VContainer.Unity;
 
 public class WorldMapController : IStartable
 {
-    private ISceneController navigator;
+    private Navigator navigator;
     private WorldMapScreen screen;
-    public WorldMapController(ISceneController navigator,  WorldMapScreen screen)
+    private SceneContainer scenes;
+
+    public WorldMapController(Navigator navigator, WorldMapScreen screen, SceneContainer scenes)
     {
         this.navigator = navigator;
         this.screen = screen;
+        this.scenes = scenes;
     }
 
     public void Start()
-    {
-        this.Register (screen);
-    }
-
-    public void Register(WorldMapScreen screen)
     {
         screen.stageTiles.ForEach((tile) =>
         {
@@ -30,10 +28,12 @@ public class WorldMapController : IStartable
     }
 
     public async void SelectStage(StageData data)
-    {   
-        await navigator.LoadInGameUI ().ContinueWith (async () => {
-            await navigator.LoadSceneByName (data.scene.ScenePath, LoadSceneMode.Single);
+    {
+        await navigator.Push(scenes.ui_inGame).ContinueWith(async () =>
+        {
+            await navigator.Push(data.scene, LoadSceneMode.Single);
         });
-        await navigator.UnloadWorldMap ();
+
+        await navigator.Pop(scenes.worldMap);
     }
 }

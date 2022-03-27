@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class KeyboardInputEvent : MonoBehaviour
 {
-    [SerializeField, SerializeReference] InputContainer channel;
+    [SerializeField, SerializeReference] InputChannel channel;
 
     void Update()
     {
@@ -26,8 +26,6 @@ public class KeyboardInputEvent : MonoBehaviour
         {
             channel.Move(new InputContext(InputStatus.RELEASED), Vector2.zero);
         }
-
-
     }
 
     private void HandleJumpInput()

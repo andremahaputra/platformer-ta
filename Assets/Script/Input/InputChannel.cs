@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Input Event", menuName = "ScriptableObject/Input Event")]
-public class InputContainer : ScriptableObject, IInputEvent
+public class InputChannel : ScriptableObject, IInputChannel
 {
-    public event IInputEvent.MoveDelegate OnMove;
-    public event IInputEvent.JumpDelegate OnJump;
-    public event IInputEvent.CrouchDelegate OnCrouch;
-    public event IInputEvent.AttackDelegate OnAttack;
+    public event IInputChannel.MoveDelegate OnMove;
+    public event IInputChannel.JumpDelegate OnJump;
+    public event IInputChannel.CrouchDelegate OnCrouch;
+    public event IInputChannel.AttackDelegate OnAttack;
 
     public void Move(InputContext ctx, Vector2 v) 
     {

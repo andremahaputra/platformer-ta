@@ -7,12 +7,12 @@ using VContainer.Unity;
 public class RootScope : LifetimeScope
 {
     [SerializeField]
-    private SceneConfig sceneConfig;
+    private SceneContainer sceneConfig;
     
     protected override void Configure(IContainerBuilder builder)
     {
         builder.RegisterEntryPoint<Initialization> (Lifetime.Transient);
-        builder.Register<SceneController> (Lifetime.Singleton).AsImplementedInterfaces();
-        builder.RegisterComponent<SceneConfig>(sceneConfig);
+        builder.Register<Navigator> (Lifetime.Singleton);
+        builder.RegisterComponent<SceneContainer>(sceneConfig);
     }
 }
