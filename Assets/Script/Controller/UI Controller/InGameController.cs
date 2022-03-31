@@ -15,5 +15,9 @@ public class InGameController : IStartable
         screen.menuBtn.onClick.AddListener(() => {
             Debug.Log("Open menu");
         });
+
+        screen.returnBtn.onClick.AddListener(() => {
+            screen.menuPanel.SetActive(false);
+        });
     }
 }

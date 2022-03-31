@@ -6,6 +6,11 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class InGameScreen : MonoBehaviour {
+    public GameObject menuPanel;
+    public Button backToMainMenuBtn;
+    public Button returnBtn;
+
+
     public TextMeshProUGUI healthTxt;
     public Button menuBtn;
     public EventTrigger jumpBtn;
