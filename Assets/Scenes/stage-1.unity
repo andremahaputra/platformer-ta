@@ -948,30 +948,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 128624210, guid: 9bbc1e9c066219a44ba5f2379a9fa9f4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2.4234622
-      objectReference: {fileID: 0}
-    - target: {fileID: 128624211, guid: 9bbc1e9c066219a44ba5f2379a9fa9f4, type: 3}
-      propertyPath: m_TranslationAtRest.z
-      value: 2.4234622
-      objectReference: {fileID: 0}
-    - target: {fileID: 128624211, guid: 9bbc1e9c066219a44ba5f2379a9fa9f4, type: 3}
-      propertyPath: m_TranslationOffset.z
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1229245353004329841, guid: 9bbc1e9c066219a44ba5f2379a9fa9f4, type: 3}
-      propertyPath: moveSpeed
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 1229245353004329841, guid: 9bbc1e9c066219a44ba5f2379a9fa9f4, type: 3}
-      propertyPath: maxJumpTime
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1229245353004329841, guid: 9bbc1e9c066219a44ba5f2379a9fa9f4, type: 3}
-      propertyPath: maxJumpHeight
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 1312827845514845172, guid: 9bbc1e9c066219a44ba5f2379a9fa9f4, type: 3}
       propertyPath: m_RootOrder
       value: 2
