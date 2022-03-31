@@ -1182,7 +1182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
-    TypeName: 
+    TypeName: RootScope
   autoRun: 1
   autoInjectGameObjects: []
   inGameScreen: {fileID: 1299376863}
