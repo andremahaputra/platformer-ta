@@ -7,5 +7,6 @@ using VContainer;
 
 public class WorldMapScreen : MonoBehaviour
 {
+    public Button backBtn;
     public List<StageTile> stageTiles;
 }

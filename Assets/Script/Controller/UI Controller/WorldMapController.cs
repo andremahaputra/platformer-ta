@@ -25,6 +25,11 @@ public class WorldMapController : IStartable
                 SelectStage(tile.stageData);
             });
         });
+
+        screen.backBtn.onClick.AddListener(() =>
+        {
+            navigator.ToMainMenu();
+        });
     }
 
     public async void SelectStage(StageData data)

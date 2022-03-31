@@ -18,4 +18,10 @@ public class InGameScreen : MonoBehaviour {
     public EventTrigger crouchBtn;
     public EventTrigger moveRightBtn;
     public EventTrigger moveLeftBtn;
+
+
+    public void SetActiveMenu (bool enabled) {
+        menuPanel.SetActive(enabled);
+    }
+
 }

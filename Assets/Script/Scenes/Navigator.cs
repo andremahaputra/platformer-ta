@@ -8,12 +8,12 @@ using VContainer.Unity;
 public class Navigator
 {
     private LifetimeScope scope;
-    private SceneContainer config;
+    private SceneContainer scenes;
 
-    public Navigator(LifetimeScope scope, SceneContainer sceneConfig)
+    public Navigator(LifetimeScope scope, SceneContainer scenes)
     {
         this.scope = scope;
-        this.config = sceneConfig;
+        this.scenes = scenes;
     }
 
     public UniTask Push(SceneReference scene, LoadSceneMode mode = LoadSceneMode.Single)
@@ -28,5 +28,9 @@ public class Navigator
     public UniTask Pop(SceneReference scene, UnloadSceneOptions option = UnloadSceneOptions.None)
     {
         return SceneManager.UnloadSceneAsync(scene.ScenePath, option).ToUniTask();
+    }
+
+    public UniTask ToMainMenu() {
+        return SceneManager.LoadSceneAsync(scenes.mainMenu).ToUniTask ();
     }
 }
