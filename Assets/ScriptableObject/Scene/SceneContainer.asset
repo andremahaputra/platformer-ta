@@ -21,3 +21,6 @@ MonoBehaviour:
   ui_inGame:
     sceneAsset: {fileID: 102900000, guid: 397669fc4f318414eaec11c61257eb5b, type: 3}
     scenePath: Assets/Scenes/ui-ingame.unity
+  ui_enemyHealth:
+    sceneAsset: {fileID: 102900000, guid: eed4b6c810107b24b99e9a5500ec17bd, type: 3}
+    scenePath: Assets/Scenes/ui-enemyhealth.unity
