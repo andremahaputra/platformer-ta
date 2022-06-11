@@ -20,7 +20,7 @@ public class MovementHandler : MonoBehaviour
     [SerializeField] private float moveSpeed = 10;
     [SerializeField] private float maxJumpHeight = 1f;
     [SerializeField] private float maxJumpTime = 0.5f;
-    
+
 
     [Header("Component")]
     public CharacterController controller;
@@ -28,7 +28,9 @@ public class MovementHandler : MonoBehaviour
 
     /// Property
     public Vector2 Forward { get; private set; }
-    
+
+    public bool isAllowOverridePosition => !isMovePressed;
+
     [SerializeField, SerializeReference] private InputChannel inputChannel;
 
 
@@ -58,6 +60,14 @@ public class MovementHandler : MonoBehaviour
         HandleJump();
     }
 
+
+
+    public void OverrideMovement(Vector3 position)
+    {
+        transform.position = position + (currentMovement * Time.deltaTime);
+    }
+
+
     void SetupJumpVariables()
     {
         float timeToApex = maxJumpTime / 2;
@@ -78,7 +88,6 @@ public class MovementHandler : MonoBehaviour
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(currentMovement.x, 0, 0), Vector3.up), 25 * Time.deltaTime);
         }
-
     }
 
     void HandleJump()
@@ -95,6 +104,7 @@ public class MovementHandler : MonoBehaviour
 
         anim.SetBool("IsJumping", isJumping);
     }
+
 
     void OnMoveListener(InputContext ctx, Vector2 v)
     {
