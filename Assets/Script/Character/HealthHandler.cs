@@ -9,7 +9,6 @@ public class HealthHandler : MonoBehaviour
 {
     [SerializeField]
     private DamageReceiverHandler damageReceiverHandler;
-
     [SerializeField]
     private CharacterStatus stats;
 
@@ -26,9 +25,9 @@ public class HealthHandler : MonoBehaviour
     public event OnHealthInitializedDelegate OnInitialize;
     public event OnDeadDelegate OnDead;
 
-    void Awake()
+    void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         damageReceiverHandler = GetComponent<DamageReceiverHandler>();
         if (damageReceiverHandler != null)
         {
@@ -46,6 +45,7 @@ public class HealthHandler : MonoBehaviour
     void InitializeHealth()
     {
         currentHp = stats.maxHp;
+      
         OnInitialize?.Invoke(stats.maxHp, stats.maxHp);
     }
 
@@ -53,6 +53,7 @@ public class HealthHandler : MonoBehaviour
     {
         currentHp -= source.DamageAmount;
         anim.SetTrigger("TakeDamage");
+
         OnCurrentHealthChanged?.Invoke(currentHp);
         if (currentHp <= 0)
         {

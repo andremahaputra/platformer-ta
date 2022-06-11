@@ -31,7 +31,8 @@ public class Navigator
         return SceneManager.UnloadSceneAsync(scene.ScenePath, option).ToUniTask();
     }
 
-    public UniTask ToProlog() {
+    public UniTask ToProlog()
+    {
         return SceneManager.LoadSceneAsync(scenes.prolog).ToUniTask();
     }
 
@@ -49,10 +50,7 @@ public class Navigator
     {
         return Push(scenes.ui_controller).ContinueWith(() =>
         {
-            Push(stage.scene, LoadSceneMode.Single).ContinueWith(() =>
-            {
-                Push(scenes.ui_playerHealth, LoadSceneMode.Additive);
-            });
+            Push(stage.scene, LoadSceneMode.Single);
         }).ContinueWith(() =>
         {
             Pop(scenes.worldMap);

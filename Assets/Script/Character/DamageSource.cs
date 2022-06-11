@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class DamageSource : MonoBehaviour
 {
-    [SerializeField] private LayerMask targetLayer;
+    [SerializeField] protected bool useTrigger = false;
+    [SerializeField] protected bool destroyAfterHit = false;
+    [SerializeField] protected LayerMask targetLayer;
 
     public virtual int DamageAmount { get; protected set; }
 
     void OnCollisionEnter(Collision c)
     {
+        if (useTrigger) return;
+        ApplyDamage(c.gameObject);
+    }
+
+    protected void ApplyDamage(GameObject c)
+    {
         if ((targetLayer.value & 1 << c.gameObject.layer) == 1 << c.gameObject.layer)
         {
-            Destroy(this.gameObject);
+            if (destroyAfterHit) Destroy(this.gameObject);
 
             var handler = c.gameObject.GetComponentInParent<DamageReceiverHandler>();
             if (handler == null) return;

@@ -8,4 +8,9 @@ public class ObstacleDamageSource : DamageSource
     private int damage;
 
     public override int DamageAmount { get => damage; protected set => base.DamageAmount = value; }
+
+    void OnTriggerEnter(Collider c) {
+        if (!useTrigger) return;
+        ApplyDamage(c.gameObject);
+    }
 }

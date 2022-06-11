@@ -4,24 +4,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthScreen : MonoBehaviour
+public class HealthScreen : HealthEventChannelListener
 {
     [SerializeField]
     private Slider healthBar;
-    
-    [SerializeField]
-    private TextMeshProUGUI enemyNameText;
 
-
-    public void Setup(string enemyName, int enemyMaxHp, int enemyCurrentHp) {
-        enemyNameText.text = enemyName;
-
-        healthBar.minValue = 0;
-        healthBar.maxValue = enemyCurrentHp;
-        healthBar.value = enemyCurrentHp;
-    }
-
-    public void UpdateHealthBar (int value) {
-        healthBar.value = value;
+    new public void Raise(HealthEventParam param) {
+        print("ANjingggg");
+        healthBar.maxValue = param.maxHp;
+        healthBar.value = param.currentHp;
     }
 }
