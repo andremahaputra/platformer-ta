@@ -7,4 +7,5 @@ public class SceneContainer : ScriptableObject {
     public SceneReference ui_controller;
     public SceneReference ui_enemyHealth;
     public SceneReference ui_playerHealth;
+    public SceneReference prolog;
 }

@@ -27,3 +27,6 @@ MonoBehaviour:
   ui_playerHealth:
     sceneAsset: {fileID: 102900000, guid: ba9fc670027e87e47851ed9c9af32722, type: 3}
     scenePath: Assets/Scenes/ui-playerhealth.unity
+  prolog:
+    sceneAsset: {fileID: 102900000, guid: 2aa3a2297ccfc954488af77fdb929d7e, type: 3}
+    scenePath: Assets/Scenes/prologue.unity

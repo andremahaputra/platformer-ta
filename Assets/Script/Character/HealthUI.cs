@@ -18,23 +18,30 @@ public class HealthUI : MonoBehaviour
 
         healthHandler.OnCurrentHealthChanged += UpdateHealthBar;
         healthHandler.OnInitialize += Setup;
+        healthHandler.OnDead += OnDead;
     }
 
     void OnDisable()
     {
         healthHandler.OnCurrentHealthChanged -= UpdateHealthBar;
         healthHandler.OnInitialize -= Setup;
+        healthHandler.OnDead -= OnDead;
+
     }
 
-    public void Setup(int maxHp, int currentHp)
+    void Setup(int maxHp, int currentHp)
     {
         hpBar.maxValue = maxHp;
         hpBar.value = currentHp;
     }
 
-    public void UpdateHealthBar(int value)
+    void UpdateHealthBar(int value)
     {
         print("should update health bar");
         hpBar.value = value;
+    }
+
+    void OnDead() {
+        gameObject.SetActive(false);
     }
 }

@@ -31,9 +31,18 @@ public class Navigator
         return SceneManager.UnloadSceneAsync(scene.ScenePath, option).ToUniTask();
     }
 
+    public UniTask ToProlog() {
+        return SceneManager.LoadSceneAsync(scenes.prolog).ToUniTask();
+    }
+
     public UniTask ToMainMenu()
     {
         return SceneManager.LoadSceneAsync(scenes.mainMenu).ToUniTask();
+    }
+
+    public UniTask ToWorldMap()
+    {
+        return SceneManager.LoadSceneAsync(scenes.worldMap, LoadSceneMode.Single).ToUniTask();
     }
 
     public UniTask ToStage(StageData stage)

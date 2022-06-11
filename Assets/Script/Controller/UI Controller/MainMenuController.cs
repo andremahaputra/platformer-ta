@@ -31,10 +31,7 @@ public class MainMenuController : IStartable
     }
     public async void OnStartGameClick()
     {
-        await navigator.Push(scenes.worldMap).ContinueWith(() =>
-        {
-            navigator.Pop(scenes.mainMenu);
-        });
+        await navigator.ToProlog();
     }
 
     public async void OnContinueGameClick()

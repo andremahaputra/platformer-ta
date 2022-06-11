@@ -24,6 +24,15 @@ EditorBuildSettings:
     path: Assets/Scenes/stage-3.unity
     guid: 9d873a04df96c9a42858ae3ec3d3bb92
   - enabled: 1
-    path: Assets/Scenes/ui-ingame.unity
+    path: Assets/Scenes/ui-controller.unity
     guid: 397669fc4f318414eaec11c61257eb5b
+  - enabled: 1
+    path: Assets/Scenes/ui-enemyhealth.unity
+    guid: eed4b6c810107b24b99e9a5500ec17bd
+  - enabled: 1
+    path: Assets/Scenes/ui-playerhealth.unity
+    guid: ba9fc670027e87e47851ed9c9af32722
+  - enabled: 1
+    path: Assets/Scenes/prologue.unity
+    guid: 2aa3a2297ccfc954488af77fdb929d7e
   m_configObjects: {}
