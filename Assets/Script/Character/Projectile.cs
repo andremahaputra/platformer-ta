@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : DamageSource
 {
     [SerializeField]
     private float speed;
 
     [SerializeField]
-    private LayerMask mask;
+    private int dmgAmount;
 
     private Vector3 direction;
 
@@ -19,14 +19,5 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         transform.position += direction.normalized * speed * Time.deltaTime;
-    }
-
-    void OnCollisionEnter(Collision c)
-    {
-        if ((mask.value & 1 << c.gameObject.layer) == 1 << c.gameObject.layer)
-        {
-            print("Apply damage");
-            Destroy(this.gameObject);
-        }        
     }
 }

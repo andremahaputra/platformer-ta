@@ -54,5 +54,5 @@
         "Temp/":true
     },
     "workbench.tree.indent": 20,
-    
+    "omnisharp.enableEditorConfigSupport": true,
 }

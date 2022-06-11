@@ -51,7 +51,6 @@ public class AttackHandler : MonoBehaviour
 
     private void OnAnimationEvent(string eventName)
     {
-        print(eventName);
         switch (eventName)
         {
             case "begin-attack":
