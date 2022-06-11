@@ -4,6 +4,7 @@ using UnityEngine;
 public class SceneContainer : ScriptableObject {
     public SceneReference mainMenu;
     public SceneReference worldMap;
-    public SceneReference ui_inGame;
+    public SceneReference ui_controller;
     public SceneReference ui_enemyHealth;
+    public SceneReference ui_playerHealth;
 }

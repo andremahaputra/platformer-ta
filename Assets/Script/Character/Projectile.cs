@@ -6,9 +6,11 @@ public class Projectile : DamageSource
     private float speed;
 
     [SerializeField]
-    private int dmgAmount;
+    private int damage;
 
     private Vector3 direction;
+
+    public override int DamageAmount { get => damage; protected set => base.DamageAmount = value; }
 
     public void Setup(Vector2 direction)
     {

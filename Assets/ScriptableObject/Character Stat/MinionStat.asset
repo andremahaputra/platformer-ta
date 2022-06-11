@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9db70245d08a17408aab292e00031cf, type: 3}
   m_Name: MinionStat
   m_EditorClassIdentifier: 
-  maxHp: 0
+  maxHp: 50
   maxMp: 0
-  atk: 0
-  def: 0
+  atk: 1
+  def: 1

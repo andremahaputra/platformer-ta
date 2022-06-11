@@ -16,8 +16,7 @@ public class DamageSource : MonoBehaviour
 
             var handler = c.gameObject.GetComponentInParent<DamageReceiverHandler>();
             if (handler == null) return;
-            
-            Debug.Log("Invoking damage receiver");
+
             handler.TakeDamage(this);
         }
     }

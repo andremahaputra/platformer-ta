@@ -129,4 +129,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   speed: 100
-  dmgAmount: 0
+  damage: 5

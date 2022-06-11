@@ -11,7 +11,6 @@ public class DamageReceiverHandler : MonoBehaviour
     public event ReceiveDamageDelegate OnReceiveDamage;
     
     public void TakeDamage(DamageSource source) {
-        Debug.Log("Receiving Damage");
         OnReceiveDamage?.Invoke(source);
     }
 }

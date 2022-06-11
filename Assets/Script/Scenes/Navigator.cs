@@ -21,8 +21,9 @@ public class Navigator
         return SceneManager.LoadSceneAsync(scene.ScenePath, LoadSceneMode.Additive).ToUniTask();
     }
 
-    public UniTask PushNamed(string name, LoadSceneMode mode = LoadSceneMode.Single) {
-        return SceneManager.LoadSceneAsync (name, mode).ToUniTask ();
+    public UniTask PushNamed(string name, LoadSceneMode mode = LoadSceneMode.Single)
+    {
+        return SceneManager.LoadSceneAsync(name, mode).ToUniTask();
     }
 
     public UniTask Pop(SceneReference scene, UnloadSceneOptions option = UnloadSceneOptions.None)
@@ -30,7 +31,22 @@ public class Navigator
         return SceneManager.UnloadSceneAsync(scene.ScenePath, option).ToUniTask();
     }
 
-    public UniTask ToMainMenu() {
-        return SceneManager.LoadSceneAsync(scenes.mainMenu).ToUniTask ();
+    public UniTask ToMainMenu()
+    {
+        return SceneManager.LoadSceneAsync(scenes.mainMenu).ToUniTask();
+    }
+
+    public UniTask ToStage(StageData stage)
+    {
+        return Push(scenes.ui_controller).ContinueWith(() =>
+        {
+            Push(stage.scene, LoadSceneMode.Single).ContinueWith(() =>
+            {
+                Push(scenes.ui_playerHealth, LoadSceneMode.Additive);
+            });
+        }).ContinueWith(() =>
+        {
+            Pop(scenes.worldMap);
+        });
     }
 }

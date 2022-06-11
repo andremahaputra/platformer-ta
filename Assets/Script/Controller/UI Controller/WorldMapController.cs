@@ -34,11 +34,6 @@ public class WorldMapController : IStartable
 
     public async void SelectStage(StageData data)
     {
-        await navigator.Push(scenes.ui_inGame).ContinueWith(async () =>
-        {
-            await navigator.Push(data.scene, LoadSceneMode.Single);
-        });
-
-        await navigator.Pop(scenes.worldMap);
+        await navigator.ToStage(data);
     }
 }

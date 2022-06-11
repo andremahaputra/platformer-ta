@@ -18,9 +18,12 @@ MonoBehaviour:
   worldMap:
     sceneAsset: {fileID: 102900000, guid: 823babe4fe6a480458c8628827b46c27, type: 3}
     scenePath: Assets/Scenes/world-map.unity
-  ui_inGame:
+  ui_controller:
     sceneAsset: {fileID: 102900000, guid: 397669fc4f318414eaec11c61257eb5b, type: 3}
-    scenePath: Assets/Scenes/ui-ingame.unity
+    scenePath: Assets/Scenes/ui-controller.unity
   ui_enemyHealth:
     sceneAsset: {fileID: 102900000, guid: eed4b6c810107b24b99e9a5500ec17bd, type: 3}
     scenePath: Assets/Scenes/ui-enemyhealth.unity
+  ui_playerHealth:
+    sceneAsset: {fileID: 102900000, guid: ba9fc670027e87e47851ed9c9af32722, type: 3}
+    scenePath: Assets/Scenes/ui-playerhealth.unity

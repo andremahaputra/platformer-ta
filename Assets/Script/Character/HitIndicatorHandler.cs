@@ -28,7 +28,6 @@ public class HitIndicatorHandler : MonoBehaviour
 
     private void SpawnHitIndicator(DamageSource source)
     {
-        Debug.Log("Should spawn hit indicator");
         var indicator = Instantiate(hitIndicator, source.gameObject.transform.position + Vector3.forward * -2, Quaternion.identity);
         indicator.gameObject.SetActive(true);
     }
