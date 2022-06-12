@@ -37,7 +37,6 @@ public class HealthBar : MonoBehaviour
 
     void UpdateHealthBar(int value)
     {
-        print("should update health bar");
         hpBar.value = value;
     }
 

@@ -10,11 +10,13 @@ public class Mob : MonoBehaviour
     [SerializeField]
     private Collider coll;
 
-    void Awake() { }
+    void Start()
+    {
+        if (healthHandler == null) healthHandler = GetComponent<HealthHandler>();
+    }
 
     void OnEnable()
     {
-        if (healthHandler == null) healthHandler = GetComponent<HealthHandler>();
         healthHandler.OnDead += OnDead;
     }
 
@@ -28,3 +30,4 @@ public class Mob : MonoBehaviour
         coll.enabled = false;
     }
 }
+

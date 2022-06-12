@@ -34,7 +34,6 @@ public class AttackHandler : MonoBehaviour
     {
         if (ctx.status == InputStatus.PRESSED)
         {
-            Debug.Log("Pressed");
             if (!isAttacking)
                 anim.SetTrigger("Attack");
         }

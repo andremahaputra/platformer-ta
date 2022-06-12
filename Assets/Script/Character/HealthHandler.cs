@@ -60,6 +60,7 @@ public class HealthHandler : MonoBehaviour
         if (currentHp <= 0)
         {
             currentHp = 0;
+            print("Dead");
             anim.SetBool("IsDead", true);
             OnDead?.Invoke();
         }
