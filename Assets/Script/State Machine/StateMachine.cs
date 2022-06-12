@@ -13,7 +13,10 @@ public abstract class StateMachine : MonoBehaviour
     void Start()
     {
         Initialize();
-        if (states.Count > 0) currentState = states.First();
+        if (states.Count > 0) {
+            currentState = states.First();
+            currentState.OnEnter();
+        }
     }
 
 
