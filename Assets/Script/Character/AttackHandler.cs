@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.Animations.Rigging;
+using DG.Tweening;
 
 public class AttackHandler : MonoBehaviour
 {
@@ -17,6 +19,8 @@ public class AttackHandler : MonoBehaviour
     public MovementHandler controller;
     public AnimationEventHandler animationEventHandler;
     public InputChannel inputEvent;
+
+    [SerializeField] MultiRotationConstraint bodyRotationConstraint;
 
     void OnEnable()
     {
@@ -35,7 +39,9 @@ public class AttackHandler : MonoBehaviour
         if (ctx.status == InputStatus.PRESSED)
         {
             if (!isAttacking)
+            {
                 anim.SetTrigger("Attack");
+            }
         }
     }
 
@@ -45,6 +51,10 @@ public class AttackHandler : MonoBehaviour
         {
             case "begin-attack":
                 // Debug.Log("Begin attack");
+                DOVirtual.Float(0, 1, 1f, (e) =>
+                {
+                   bodyRotationConstraint.weight = e;
+                });
                 isAttacking = true;
                 break;
             case "complete-attack":
@@ -52,6 +62,10 @@ public class AttackHandler : MonoBehaviour
                 var o = GameObject.Instantiate(projectile, projectileInitialPos.position, Quaternion.identity);
                 o.Setup(controller.Forward == Vector2.zero ? Vector2.right : controller.Forward);
                 isAttacking = false;
+                DOVirtual.Float(1, 0, 1f, (e) =>
+                {
+                    bodyRotationConstraint.weight = e;
+                });
                 break;
         }
     }

@@ -13,7 +13,15 @@ public class AttackPlayerState : State
     private MultiAimConstraint aimConstraint;
     private Transform target;
 
-    public AttackPlayerState(StateMachine controller, Transform targetAimConstraint, MultiAimConstraint aimConstraint, float aggroRadius, LayerMask targetLayer)
+    public AttackPlayerState(
+        StateMachine controller,
+        Transform targetAimConstraint,
+        MultiAimConstraint aimConstraint,
+        float aggroRadius,
+        LayerMask targetLayer,
+        Transform projectilePos,
+        GameObject projectile
+    )
     {
         this.controller = controller;
         this.aggroRadius = aggroRadius;
@@ -27,12 +35,16 @@ public class AttackPlayerState : State
         var colls = Physics.OverlapSphere(controller.transform.position, aggroRadius, targetLayer);
         if (colls.Length > 0)
             target = colls.First().transform;
-        aimConstraintTarget.position = target.position + (Vector3.up * 15f);
 
-        DOVirtual.Float(0, 1, 1f, (e) =>
-        {
-            aimConstraint.weight = e;
+        var dir = target.transform.position - controller.transform.position;
+        controller.transform.DORotate(dir.normalized - Vector3.up * 90 , 1f).OnComplete(() => {
+            aimConstraintTarget.position = target.position + (Vector3.up * 15f);
+            DOVirtual.Float(0, 1, .6f, (e) =>
+            {
+                aimConstraint.weight = e;
+            });
         });
+       
     }
 
     public override void OnExit()
@@ -43,9 +55,11 @@ public class AttackPlayerState : State
         });
     }
 
+
+
     public override void OnUpdate()
     {
-
+        
         base.OnUpdate();
     }
 }

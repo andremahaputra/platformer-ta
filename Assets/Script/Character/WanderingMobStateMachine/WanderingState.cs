@@ -4,51 +4,40 @@ using UnityEngine;
 public class WanderingState : State
 {
     private StateMachine controller;
-    private Transform targetPosition;
-    private Transform beginPosition, endPosition;
+    private Vector3 targetPos;
 
-    public WanderingState(StateMachine controller, Transform beginPosition, Transform endPosition)
+    private Vector3 beginPos, endPos;
+
+    public WanderingState(StateMachine controller, Vector3 beginPosition, Vector3 endPosition)
     {
         this.controller = controller;
-        this.targetPosition = beginPosition;
-        this.beginPosition = beginPosition;
-        this.endPosition = endPosition;
+        this.targetPos = beginPosition;
+        this.beginPos = beginPosition;
+        this.endPos = endPosition;
     }
 
-    public override void OnEnter()
-    {
+    public override void OnEnter() { }
 
-    }
+    public override void OnExit() { }
 
-    public override void OnExit()
-    {
-
-    }
-
-    private Vector3 currentMovement = Vector3.zero;
     public override void OnUpdate()
     {
-        var currentPosition = controller.transform.position;
-        var distance = Vector3.Distance(currentPosition, targetPosition.position);
+        Debug.DrawLine(beginPos, beginPos + Vector3.up * 10f, Color.green);
+        Debug.DrawLine(endPos, endPos + Vector3.up * 10f, Color.red);
 
-        var dir = (currentPosition - targetPosition.position).normalized;
-        Debug.Log(dir);
-        Debug.Log(targetPosition.position);
-        // currentMovement = dir * Time.deltaTime;
-        // controller.transform.position += dir;
+        var dir = targetPos - controller.transform.position;
+        Debug.DrawLine(controller.transform.position + Vector3.up * 15, controller.transform.position + Vector3.up * 15 + dir.normalized * 10, Color.blue);
 
-        if (distance < 1f)
+        var distance = Vector3.Distance(controller.transform.position, targetPos);
+        controller.transform.position += dir.normalized * 5 * Time.deltaTime;
+
+        Debug.DrawLine(controller.transform.position + Vector3.up * 15, targetPos + Vector3.up * 15, Color.yellow);
+        controller.transform.rotation = Quaternion.Lerp (controller.transform.rotation, Quaternion.LookRotation(dir.normalized), 5 * Time.deltaTime);
+        if (distance < 5f)
         {
-            if (targetPosition == beginPosition)
-            {
-                targetPosition = endPosition;
-            }
-            else
-            {
-                targetPosition = beginPosition;
-            }
+            if (targetPos == beginPos) targetPos = endPos;
+            else targetPos = beginPos;
         }
-
         base.OnUpdate();
     }
 }
