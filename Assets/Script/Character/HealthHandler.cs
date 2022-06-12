@@ -26,14 +26,17 @@ public class HealthHandler : MonoBehaviour
 
     void Start()
     {
-        anim = GetComponentInChildren<Animator>();
-        damageReceiverHandler = GetComponent<DamageReceiverHandler>();
-        if (damageReceiverHandler != null)
-        {
-            damageReceiverHandler.OnReceiveDamage += TakeDamage;
-        }
-
         InitializeHealth();
+
+    }
+
+    void OnEnable()
+    {
+        if (anim == null) anim = GetComponentInChildren<Animator>();
+        if (damageReceiverHandler == null) damageReceiverHandler = GetComponent<DamageReceiverHandler>();
+
+        damageReceiverHandler.OnReceiveDamage += TakeDamage;
+
     }
 
     void OnDisable()
@@ -44,7 +47,7 @@ public class HealthHandler : MonoBehaviour
     void InitializeHealth()
     {
         currentHp = stats.maxHp;
-      
+
         OnInitialize?.Invoke(stats.maxHp, stats.maxHp);
     }
 

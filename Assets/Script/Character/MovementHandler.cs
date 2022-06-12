@@ -36,14 +36,17 @@ public class MovementHandler : MonoBehaviour
 
     void Start()
     {
+        SetupJumpVariables();
+    }
+
+    void OnEnable()
+    {
         if (inputChannel != null)
         {
             inputChannel.OnMove += OnMoveListener;
             inputChannel.OnJump += OnJumpListener;
             inputChannel.OnCrouch += OnCrouchListener;
         }
-
-        SetupJumpVariables();
     }
 
     void OnDisable()

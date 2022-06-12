@@ -7,7 +7,6 @@ using UnityEngine.UIElements;
 public class AttackHandler : MonoBehaviour
 {
     private bool isAttacking = false;
-    private bool isAnimComplete = false;
 
     [Header("Property")]
     public Projectile projectile;
@@ -18,12 +17,6 @@ public class AttackHandler : MonoBehaviour
     public MovementHandler controller;
     public AnimationEventHandler animationEventHandler;
     public InputChannel inputEvent;
-
-    [Header("Configuration")]
-    [SerializeField]
-    private float fireRate = 0.3f;
-    private float fireTimer = 0;
-
 
     void OnEnable()
     {
@@ -37,16 +30,14 @@ public class AttackHandler : MonoBehaviour
         animationEventHandler.OnAnimationEvent -= OnAnimationEvent;
     }
 
-    private void Reset()
-    {
-        isAttacking = false;
-        isAnimComplete = false;
-    }
-
     private void OnAttackInput(InputContext ctx)
     {
-        isAttacking = ctx.status == InputStatus.PRESSED;
-        anim.SetBool("IsAttacking", isAttacking);
+        if (ctx.status == InputStatus.PRESSED)
+        {
+            Debug.Log("Pressed");
+            if (!isAttacking)
+                anim.SetTrigger("Attack");
+        }
     }
 
     private void OnAnimationEvent(string eventName)
@@ -54,29 +45,15 @@ public class AttackHandler : MonoBehaviour
         switch (eventName)
         {
             case "begin-attack":
-                isAnimComplete = false;
+                // Debug.Log("Begin attack");
+                isAttacking = true;
                 break;
             case "complete-attack":
-                isAnimComplete = true;
+                // Debug.Log("Complete attack");
+                var o = GameObject.Instantiate(projectile, projectileInitialPos.position, Quaternion.identity);
+                o.Setup(controller.Forward == Vector2.zero ? Vector2.right : controller.Forward);
+                isAttacking = false;
                 break;
-        }
-    }
-
-
-    void Update()
-    {
-        HandleAttack();
-    }
-
-    private void HandleAttack()
-    {
-        fireTimer += Time.deltaTime;
-
-        if (isAttacking && isAnimComplete && fireTimer > fireRate)
-        {
-            var o = GameObject.Instantiate(projectile, projectileInitialPos.position, Quaternion.identity);
-            o.Setup(controller.Forward);
-            fireTimer = 0;
         }
     }
 }

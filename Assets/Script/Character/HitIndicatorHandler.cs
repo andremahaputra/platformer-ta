@@ -10,15 +10,11 @@ public class HitIndicatorHandler : MonoBehaviour
 
     [SerializeField]
     private DamageReceiverHandler damageReceiverHandler;
-
-    void Awake()
+    
+    void OnEnable()
     {
-        damageReceiverHandler = GetComponent<DamageReceiverHandler>();
-
-        if (damageReceiverHandler != null)
-        {
-            damageReceiverHandler.OnReceiveDamage += SpawnHitIndicator;
-        }
+        if (damageReceiverHandler == null) damageReceiverHandler = GetComponent<DamageReceiverHandler>();
+        damageReceiverHandler.OnReceiveDamage += SpawnHitIndicator;
     }
 
     void OnDisable()
